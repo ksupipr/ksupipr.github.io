@@ -1,7 +1,7 @@
 // класс типа игрока
 
 function Server(host) {
-	this._host = host || '192.168.1.7:8080';
+	this._host = host || 'blazhnov.me:8080';
 
 	this.logErr = function(a,s,d) {
 		log(s);
