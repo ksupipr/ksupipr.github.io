@@ -202,6 +202,22 @@ var GameClass = {
 		$('#fightButton2').show().click(function() {
 			self.goBattle();
 		});
+
+
+		var
+			count = 1000,
+			battle = function() {
+				if (count > 0) {
+					self.goBattle();
+					count--;
+					setTimeout(battle, 100);
+				}
+			}
+
+		$('#fightButton3').click(function() {
+			count = 1000;
+			battle();
+		});
 	},
 
 	goBattle: function() {
