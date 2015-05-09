@@ -59,8 +59,7 @@ function Player(_name, _type, _secureKey) {
 	this.gui_obj["score"] = $('#player .score');
 	this.gui_obj["type"] = $('#player .type');
 	this.gui_obj["level"] = $('#player .level');
-	this.gui_obj["wins"] = $('#player .wins');
-	this.gui_obj["loses"] = $('#player .loses');
+	this.gui_obj["battles"] = $('#player .battles');
 
 	this.register = function(cb) {
 		var  self = this;
@@ -120,6 +119,9 @@ function Player(_name, _type, _secureKey) {
 		this.gui_obj[nm].html( this.showParamName( nm ) );
 	}
 	
+	this.showBattles = function(nm) {
+		this.gui_obj.battles.html( this.wins+this.loses+' ('+(this.wins+'/'+this.loses)+')' );
+	}
 	// всех параметров
 	this.showInfo = function() {
 		this.show('name');
@@ -127,8 +129,7 @@ function Player(_name, _type, _secureKey) {
 		this.show('type');
 		this.show('exp');
 		this.show('level');
-		this.show('wins');
-		this.show('loses');
+		this.showBattles();
 	}
 	
 	this.updateAll = function(params) {
@@ -206,11 +207,18 @@ var GameClass = {
 	goBattle: function() {
 		var self = this;
 		this._server.post('game', {name: this.player.name, secureKey: this.player.secureKey}, function(d){
-			$('#battleLog').html( d.yourWin ? 'You WIN!!!' : 'You LOSE (').append('</br>').append(''+
-				 '<div>Enemy: <span>'+d.enemy.name+'</span></div>'+
-				 '<div>Class: <span>'+self.player.showParamName( 'type', d.enemy.type )+'</span></div>'+
-				 '<div>Level: <span>'+d.enemy.level+'</span></div>'
+			$('#battleLog').html( d.yourWin ? '<b class="green">You WIN!!!</b>' : '<b class="red">You LOSE (</b>').append('</br>').append(''+
+				 '<div><label>Enemy: </label><span>'+d.enemy.name+'</span></div>'+
+				 '<div><label>Class: </label><span>'+self.player.showParamName( 'type', d.enemy.type )+'</span></div>'+
+				 '<div><label>Level: </label><span>'+d.enemy.level+'</span></div>'+
+				 '<br/><div>You get:</div>'+
+				 '<div><label>Exp: </label><span>'+ (d.you.exp - self.player.exp)+'</span></div>'
 			);
+			if ( (d.you.level - self.player.level) > 0 ) {
+				$('#battleLog').append('<div><label>Level: </label><span>'+(d.you.level - self.player.level)+'</span></div>');
+			}
+
+
 			self.player.updateAll( d.you );
            
 		});
