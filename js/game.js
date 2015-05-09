@@ -218,6 +218,10 @@ var GameClass = {
 			count = 1000;
 			battle();
 		});
+		
+		$('#fightButton4').click(function() {
+			count = -1;
+		});
 	},
 
 	goBattle: function() {
