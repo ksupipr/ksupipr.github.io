@@ -1,0 +1,10 @@
+* { outline:none; }
+
+html, body 
+{
+	margin:0px;
+	padding:10px;
+	font-size:13px;
+	font-family:Arial, Verdana;
+	color:#333;
+}

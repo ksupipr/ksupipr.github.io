@@ -1,1 +1,33 @@
-GHp
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AppleWatchGame</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/functions.js" ></script>
+	<script type="text/javascript" src="js/game.js" ></script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="player">
+    	<div>Name: <span class="name"></span></div>
+    	<div>Class: <span class="type"></span></div>
+    	<div>Exp: <span class="exp"></span></div>
+    	<div>Score: <span class="score"></span></div>
+    	<div>Level: <span class="level"></span></div>
+    	<div>Wins: <span class="wins"></span></div>
+    	<div>Loses: <span class="loses"></span></div>
+    </div>
+    <div style="padding: 15px; ">
+
+    <span id="fightButton" style="display:none; padding: 5px; margin: 5px; border:1px solid #ff0000; width: 80px; cursor: pointer; background: #cfcfcf; ">Melee Attack</span>
+
+    <span id="fightButton2" style="display:none; padding: 5px; margin: 5px;  border:1px solid #ff0000; width: 80px; cursor: pointer; background: #cfcfcf; ">Magic Attack</span>
+	</div>
+
+    <div id="battleLog"></div>
+</div>
+<div id="debug"></div>
+</body>
+</html>
