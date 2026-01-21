@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Share</title>
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <script src="js/share.js"></script>
+</head>
+<body>
+    <script type="module">
+      const shareImg = async () => {
+        const response = await fetch('https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
+        const blob = await response.blob();
+        shareImageAsset(blob, 'Google Logo', 'https://www.google.com');
+      }
+  </script>
+
+  <div id="screen"></div>
+  <button onclick="shareImg()">Share</button>
+
+</body>
+</html>
