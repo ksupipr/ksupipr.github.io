@@ -8,7 +8,7 @@ const shareImageAsset = async ({blobImageAsset, title, text, url}) => {
     const shareData = {
       title: `${title}`,
       url: `${url}`,
-      text: `${text}`,
+      /// text: `${text}`,
       files: filesArray,
     };
 
