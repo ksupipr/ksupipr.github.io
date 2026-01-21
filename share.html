@@ -9,9 +9,12 @@
 </head>
 <body>
     <script>
-      const screen = document.querySelector('screen');
+      let screen;
       const showScreen = (text) => {
-        screen.innerHTML(text);
+        if (!screen) {
+          screen = document.querySelector('screen');
+        }
+        screen.innerHTML = text;
       }
 
       const shareImg = async () => {
