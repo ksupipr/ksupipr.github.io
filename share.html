@@ -10,9 +10,24 @@
 <body>
     <script>
       const shareImg = async () => {
-        const response = await fetch('https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
-        const blob = await response.blob();
-        shareImageAsset(blob, 'Google Logo', 'https://www.google.com');
+        try {
+          // Using a CORS-enabled image service or local image
+          // Option 1: Use a CORS-enabled CDN
+          const url = 'https://yandex-images.clstorage.net/T95So4C01/ad0082WsOau1/AEHCk4wb4x91E68FP6YTHy17e8Ow9UIGKjvhS1uQbomRkHAJF8evJkv6ji_oYUnG4fltwDB2kT2aUeAFjdyfgFQEpicsK6OOUYJuIQ6mw8sduh7nULG3Joo-xE3t5xyL9-K2btAwOKK7v056idCZUjJqrMcFsNIoDvEQkSn4K3eBcxGT6anzHpOw32U-9-Pp_0hrlRFAkNU_akOvbCSPGJSSZXwiIAlR2r7PumgVWSMTGXmlBwChin1TcUAICtvEkxBRUhibUt0Aww1F_zbQe__L25YggpJ17_kjbk8XfkpUUoTdMsDr0qivDqoJxFsQE-oYJiZw0zv-4VPhe_sJx4PTYdM7e6Ov46B-tazVUbvtSGrFAJMgd_2rkb9OlV5LFHL1rvIwOtGYzQ-qeJZrIdMZCIVF8qDpX7CAkji7SCfz4nNySjpCzxKgTzVel2A6nPtoF2Lwg6RfKaIvjuR8WZVzN-zC8ElQGT2MynklCMEwyGiUV2FTy9xwoJBKeopXQ9BA0SjosR_jcG10zTXBqo44e6fTAfJ3bLpBToxnvEtlUveuUuHrM4sNvnppFRhxYzvrRiUDMGqtwvFj-Yk7peOw0fKK6eHs4NEdhY9mEgqOuwsE0eGQBPzpo7ycZKwotQEnbNCz6oE4LJ27WvRK8_HLmtZlsrIIr_BS0_v7eodzIbExqlmDTRPBrHTspPKprSpoJ5EBoaU9OZFeDufd2veCx58TQlnBy30-GhkmK_EBqRlVF8CCC-xS0PP7mVo1MKDSMai4EPwTc5xXX4aBqo9JeOZgMFKGHKmwLk72POklkyWcwgMJEcjdb2rJNNjDwtuYd3dQQZmtoLPxaOl6dDEgcVEq6EFMUsN8RU-l4em8mKhnECERB184sx6flYxZNNA1beCQ-oHqrZ8JmcQqopNZi6Qn8sLqfwDh45iJ63RTEfNRKhog3uNRDXb_lHJ6vqto55FygKQvO_NvY';
+          const response = await fetch(url, {
+            mode: 'cors'
+          });
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          const blob = await response.blob();
+          shareImageAsset(blob, 'Share Image', window.location.href);
+        } catch (error) {
+          console.error('Failed to fetch image:', error);
+          alert('Failed to load image. Please check your internet connection or try again.');
+        }
       }
   </script>
 
