@@ -38,7 +38,14 @@
           showScreen(`Get blob: ${response.status}`);
           const blob = await response.blob();
           showScreen(`Share blob...`);
-          shareImageAsset(blob, 'Share Image', window.location.href);
+          // Для iOS лучше передать imageUrl напрямую, так как files не поддерживается
+          await shareImageAsset({
+            blobImageAsset: blob,
+            title: 'Share Image',
+            text: 'Check out this image!',
+            url: window.location.href,
+            imageUrl: url // Используем оригинальный URL изображения для iOS
+          });
           showScreen('End sharing.')
         } catch (error) {
           console.error('Failed to fetch image:', error);
