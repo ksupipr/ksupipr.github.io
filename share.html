@@ -9,7 +9,13 @@
 </head>
 <body>
     <script>
+      const screen = document.querySelector('screen');
+      const showScreen = (text) => {
+        screen.innerHTML(text);
+      }
+
       const shareImg = async () => {
+        showScreen('Start sharing...')
         try {
           // Using a CORS-enabled image service or local image
           // Option 1: Use a CORS-enabled CDN
@@ -22,17 +28,18 @@
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           
+          showScreen(`Get blob: ${response.status}`);
           const blob = await response.blob();
+          showScreen(`Share blob...`);
           shareImageAsset(blob, 'Share Image', window.location.href);
+          showScreen('End sharing.')
         } catch (error) {
           console.error('Failed to fetch image:', error);
-          alert('Failed to load image. Please check your internet connection or try again.');
+          showScreen('Failed to load image. Please check your internet connection or try again.');
         }
       }
   </script>
-
   <div id="screen"></div>
   <button onclick="shareImg()">Share</button>
-
 </body>
 </html>
