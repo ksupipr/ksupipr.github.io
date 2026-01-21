@@ -19,6 +19,10 @@
 
       const shareImg = async () => {
         showScreen('Start sharing...')
+        if (!navigator.share) {
+          showScreen('Share not supported');
+          return;
+        }
         try {
           // Using a CORS-enabled image service or local image
           // Option 1: Use a CORS-enabled CDN
