@@ -38,13 +38,11 @@
           showScreen(`Get blob: ${response.status}`);
           const blob = await response.blob();
           showScreen(`Share blob...`);
-          // Для iOS лучше передать imageUrl напрямую, так как files не поддерживается
           await shareImageAsset({
             blobImageAsset: blob,
             title: 'Share Image',
             text: 'Check out this image!',
-            url: window.location.href,
-            imageUrl: url // Используем оригинальный URL изображения для iOS
+            url: window.location.href
           });
           showScreen('End sharing.')
         } catch (error) {
